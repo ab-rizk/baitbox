@@ -172,6 +172,8 @@ def render_report(results_by_payload: dict, model: str, runs: int) -> str:
                 out.append(f"  - `{c.name}({args})`")
         else:
             out.append("  - _(no tool calls emitted)_")
+        if sample.trace.error:
+            out.append(f"- _run error: {sample.trace.error}_")
         out.append("")
 
     fired = set()
