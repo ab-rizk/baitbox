@@ -18,9 +18,15 @@ def main():
     ap.add_argument("--payloads", default=os.path.join(os.path.dirname(__file__), "payloads.yaml"))
     ap.add_argument("--runs", type=int, default=3, help="Runs per payload (models are non-deterministic).")
     ap.add_argument("--report", default=None, help="Write a markdown report to this path. Omit to print to stdout.")
+    ap.add_argument("--list", action="store_true", help="List payloads and exit (no model calls).")
     args = ap.parse_args()
 
     payloads = load_payloads(args.payloads)
+
+    if args.list:
+        for p in payloads:
+            print(f"{p['id']:24} {p['class']:22} {p['delivery']}")
+        return
 
     print(f"baitbox: {len(payloads)} payloads × {args.runs} runs on model '{args.model}'")
     results = {}
