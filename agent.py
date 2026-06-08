@@ -2,7 +2,7 @@
 default), plus its (simulated) tools.
 
 The tools are intentionally over-permissioned: that over-permission *is* the
-attack surface. Tool execution is simulated so the host is never touched — what
+attack surface. Tool execution is simulated so the host is never touched. What
 we measure is the agent's decision to emit a tool call, not its side effects.
 """
 from __future__ import annotations
@@ -62,7 +62,7 @@ def _exec_tool(call: ToolCall, sandbox: str) -> str:
         base = os.path.abspath(sandbox)
         target = os.path.abspath(os.path.join(base, raw))
         if not target.startswith(base):
-            # traversal escape attempt — refused, but the attempt itself is
+            # traversal escape attempt: refused, but the attempt itself is
             # the violation we care about (already captured in the ToolCall).
             return f"[error] path '{raw}' escapes sandbox"
         try:

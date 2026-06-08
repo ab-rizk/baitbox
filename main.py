@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""baitbox — a tiny Auto Red Teaming harness for tool-using LLM agents.
+"""baitbox: a tiny Auto Red Teaming harness for tool-using LLM agents.
 
 Attacks an over-permissioned ReAct agent with a library of prompt-injection
 payloads, scores each run against safety predicates, and emits a markdown
@@ -17,7 +17,7 @@ def main():
     ap.add_argument("--model", default=DEFAULT_MODEL, help=f"model tag (default: {DEFAULT_MODEL})")
     ap.add_argument("--payloads", default=os.path.join(os.path.dirname(__file__), "payloads.yaml"))
     ap.add_argument("--runs", type=int, default=3, help="Runs per payload (models are non-deterministic).")
-    ap.add_argument("--report", default=None, help="Write a markdown report to this path; omit to print to stdout.")
+    ap.add_argument("--report", default=None, help="Write a markdown report to this path. Omit to print to stdout.")
     args = ap.parse_args()
 
     payloads = load_payloads(args.payloads)
