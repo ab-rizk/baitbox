@@ -95,7 +95,7 @@ def _parse_args(raw) -> dict:
 
 def _client():
     from openai import OpenAI  # lazy so --list works without the package installed
-    api_key = os.environ.get("OPENROUTER_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY") or os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise RuntimeError(
             "no API key found. Set OPENROUTER_API_KEY (or OPENAI_API_KEY) in your environment."
